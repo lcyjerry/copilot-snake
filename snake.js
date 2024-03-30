@@ -42,17 +42,13 @@ context.textAlign = "center"; // 设置文本对齐方式为中心
 context.textBaseline = "middle"; // 设置文本基线为中心
 context.fillText(text, centerX, centerY);
 
-let obstacles = [generateObstacle(), generateObstacle(), generateObstacle()]; // 生成障碍物
+let obstacles = [generateRandom(), generateRandom(), generateRandom()]; // 生成障碍物
 let snake = []; // 初始化蛇
 snake[0] = { x: 8 * box, y: 8 * box }; // 蛇的初始位置
 
 let direction = "RIGHT"; // 蛇的初始方向
 
-let food = {
-  // 食物的初始位置
-  x: Math.floor(Math.random() * 15 + 1) * box,
-  y: Math.floor(Math.random() * 15 + 1) * box,
-};
+let food = generateRandom();
 
 // 绘制游戏
 function drawGame() {
@@ -98,7 +94,7 @@ function drawGame() {
     snake.pop(); // 没有吃到食物，蛇移动一格
   } else {
     // 吃到食物，生成新的食物，得分加1
-    food = generateObstacle();
+    food = generateRandom();
     score++;
   }
 
@@ -146,15 +142,8 @@ function collision(head, array) {
   return false; // 没有发生碰撞
 }
 
-function generateRandomPosition() {
-  return {
-    x: Math.floor(Math.random() * 15 + 1) * box,
-    y: Math.floor(Math.random() * 15 + 1) * box,
-  };
-}
-
-// 生成障碍物
-function generateObstacle() {
+// 随机生成
+function generateRandom() {
   return {
     x: Math.floor(Math.random() * 15 + 1) * box,
     y: Math.floor(Math.random() * 15 + 1) * box,

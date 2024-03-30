@@ -1,3 +1,5 @@
+let game; // 游戏定时器
+
 // 游戏设置
 let canvas = document.getElementById("game"); // 获取游戏画布
 let context = canvas.getContext("2d"); // 获取2D渲染上下文
@@ -150,9 +152,6 @@ function generateRandom() {
   };
 }
 
-// 控制方向
-document.addEventListener("keydown", directionControl);
-
 function directionControl(event) {
   let key = event.keyCode;
   if (key == 37 && direction != "RIGHT") {
@@ -166,9 +165,8 @@ function directionControl(event) {
   }
 }
 
-let startButton = document.getElementById("start-button"); // 获取开始按钮
-let game; // 游戏定时器
-let gameover = false; // 用来标记游戏是否结束
+// 控制方向
+document.addEventListener("keydown", directionControl);
 
 // 点击开始按钮开始游戏
 canvas.addEventListener("click", function (event) {
